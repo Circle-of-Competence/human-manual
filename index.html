@@ -3,87 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>人类生物单元工业化解构手册 | HUMAN BIO-UNIT MANUAL v2.0</title>
+    <title>人类生物单元工业化解构手册 | HUMAN BIO-UNIT MANUAL v3.0</title>
     <style>
         :root {
-            --primary-green: #008f5d; /* 经典邮政绿/工业绿 */
+            --primary-green: #008f5d; /* 工业绿 */
             --dark-green: #004d32;
             --light-green: #e8f5e9;   
-            --alert-red: #d32f2f;
-            --warning-yellow: #fdd835;
-            --tech-black: #121212;
-            --paper-white: #f0f0f0;   /* 稍微带点灰，像旧纸 */
-            --border-style: 2px solid var(--primary-green);
+            --alert-red: #ff3b30;
+            --warning-yellow: #ffcc00;
+            --tech-black: #1c1c1e;
+            --paper-white: #f2f2f7;   
+            --border-style: 2px solid var(--tech-black);
         }
 
-        * {
-            box-sizing: border-box;
-            user-select: none; 
-        }
+        * { box-sizing: border-box; }
 
         body {
-            font-family: 'Courier New', 'SimSun', 'Songti SC', monospace; /* 宋体/等宽字体混排，更有复古感 */
+            font-family: 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace;
             background-color: var(--light-green);
             color: var(--tech-black);
             margin: 0;
             padding: 20px;
             overflow-x: hidden;
             background-image: 
-                linear-gradient(var(--primary-green) 1px, transparent 1px),
-                linear-gradient(90deg, var(--primary-green) 1px, transparent 1px);
-            background-size: 20px 20px; /* 更密集的网格 */
-            background-blend-mode: multiply;
+                linear-gradient(rgba(0,143,93,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,143,93,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        /* 主容器：模拟档案袋或控制台 */
         .container {
             max-width: 900px;
             margin: 0 auto;
             background: var(--paper-white);
             border: 3px solid var(--tech-black);
-            box-shadow: 15px 15px 0px var(--primary-green); /* 硬朗的阴影 */
+            box-shadow: 12px 12px 0px var(--primary-green);
             padding: 40px;
             position: relative;
         }
 
-        /* 装饰：四角螺丝 */
+        /* 装饰螺丝 */
         .screw {
             position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #333;
+            width: 14px;
+            height: 14px;
+            background: #2c2c2e;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
             color: #555;
             font-size: 10px;
+            pointer-events: none;
         }
-        .tl { top: 10px; left: 10px; transform: rotate(45deg); }
-        .tr { top: 10px; right: 10px; transform: rotate(15deg); }
-        .bl { bottom: 10px; left: 10px; transform: rotate(90deg); }
-        .br { bottom: 10px; right: 10px; transform: rotate(-30deg); }
-        .screw::after { content: '-'; color: #888; }
+        .tl { top: 12px; left: 12px; transform: rotate(45deg); }
+        .tr { top: 12px; right: 12px; transform: rotate(15deg); }
+        .bl { bottom: 12px; left: 12px; transform: rotate(90deg); }
+        .br { bottom: 12px; right: 12px; transform: rotate(-30deg); }
+        .screw::after { content: '+'; color: #888; font-weight: bold; }
 
         header {
-            border-bottom: 2px dashed var(--tech-black);
+            border-bottom: 3px double var(--tech-black);
             margin-bottom: 25px;
             padding-bottom: 15px;
             text-align: center;
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin: 0;
             font-weight: 900;
             letter-spacing: -1px;
-            text-shadow: 2px 2px 0px var(--primary-green);
+            text-transform: uppercase;
         }
 
         .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             background: var(--tech-black);
-            color: var(--primary-green);
+            color: #fff;
             display: inline-block;
             padding: 4px 12px;
             margin-top: 10px;
@@ -103,7 +98,7 @@
 
         .panel {
             border: 2px solid var(--tech-black);
-            padding: 20px;
+            padding: 25px 20px 20px 20px;
             position: relative;
             background: #fff;
         }
@@ -115,378 +110,404 @@
             background: var(--primary-green);
             color: #fff;
             padding: 2px 8px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             border: 1px solid var(--tech-black);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
         }
 
         select, button {
             width: 100%;
             padding: 12px;
-            margin-top: 15px;
+            margin-top: 5px;
             font-family: inherit;
             border: 2px solid var(--tech-black);
             background: #fff;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             outline: none;
+            border-radius: 0;
+            appearance: none; /* 移除默认样式 */
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px top 50%;
+            background-size: 10px auto;
         }
 
-        select:hover { background: #e0f2f1; }
-
         button {
+            background-image: none;
             background: var(--tech-black);
-            color: var(--primary-green);
+            color: #fff;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
-            transition: all 0.1s;
+            margin-top: 15px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            transition: transform 0.1s, box-shadow 0.1s;
         }
 
         button:active {
             transform: translate(2px, 2px);
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
         }
 
-        /* 输出区域：蓝图风格 */
+        /* 结果展示区 */
         #result-area {
-            background: #0d2b42; /* 深蓝图色 */
-            color: #aeddf5;      /* 蓝图浅蓝字 */
+            background: #1e1e1e; /* 终端黑 */
+            color: #00ff41;      /* 矩阵绿 */
             padding: 25px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            border: 4px double #fff;
-            min-height: 400px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            border: 4px solid #bbb;
+            outline: 2px solid #1e1e1e;
+            min-height: 500px; /* 增加高度 */
+            max-height: 800px;
             white-space: pre-wrap;
             overflow-y: auto;
             position: relative;
-            font-family: 'Consolas', monospace;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-        }
-        
-        /* 蓝图水印 */
-        #result-area::after {
-            content: "CONFIDENTIAL // 绝密档案";
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-25deg);
-            font-size: 3rem;
-            color: rgba(255,255,255,0.05);
-            pointer-events: none;
-            border: 5px solid rgba(255,255,255,0.05);
-            padding: 10px 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
         }
 
-        /* 弹窗样式 */
+        /* 滚动条样式 */
+        #result-area::-webkit-scrollbar { width: 10px; }
+        #result-area::-webkit-scrollbar-track { background: #1e1e1e; }
+        #result-area::-webkit-scrollbar-thumb { background: #008f5d; border: 1px solid #000; }
+
+        .warranty {
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--tech-black);
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* 弹窗 */
         .popup {
             position: fixed;
             background: #fff;
             border: 3px solid #000;
-            width: 320px;
-            box-shadow: 10px 10px 0 rgba(0,0,0,0.4);
+            width: 300px;
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
             z-index: 1000;
             display: none;
-            animation: popup-bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popup-bounce {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
         }
         
         .popup-header {
             background: var(--warning-yellow);
-            padding: 8px 15px;
+            padding: 8px 12px;
             font-weight: bold;
             border-bottom: 2px solid #000;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .popup-body { padding: 20px; font-size: 0.95rem; }
-
-        .close-x { cursor: pointer; font-family: sans-serif; font-weight: 900; }
-
-        .warranty {
-            font-size: 0.75rem;
-            color: #666;
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px dashed var(--tech-black);
-            line-height: 1.5;
-        }
+        .popup-body { padding: 15px; font-size: 0.9rem; }
+        .close-btn { cursor: pointer; border: 1px solid #000; background: #fff; width: 20px; height: 20px; line-height: 18px; text-align: center; }
 
     </style>
 </head>
 <body>
 
-<div class="container" id="main-container">
+<div class="container">
     <div class="screw tl"></div><div class="screw tr"></div>
     <div class="screw bl"></div><div class="screw br"></div>
 
     <header>
-        <h1>HUMAN BIO-UNIT MANUAL</h1>
-        <h1>人类生物单元工业说明书</h1>
-        <div class="subtitle">工业化解构 / 参数化重组 / 社交降维打击</div>
+        <h1>HUMAN SPECIFICATION</h1>
+        <div style="font-size: 1.2rem; font-weight: 900; margin-top:5px;">人类生物单元说明书</div>
+        <div class="subtitle">V3.0 扩充版 | 工业化解构 | 社交协议重组</div>
     </header>
 
     <div class="grid-system">
         <div class="panel">
-            <div class="panel-label">SECTION A: 硬件架构 (MBTI)</div>
+            <div class="panel-label">HARDWARE / 硬件型号 (MBTI)</div>
             <select id="mbti-select">
-                <option value="" disabled selected>-- 请选择核心处理器型号 --</option>
-                <optgroup label="分析师集群 (高算力/低情商)">
-                    <option value="INTJ">INTJ - 战略规划主机 (Mark-I)</option>
-                    <option value="INTP">INTP - 量子逻辑原型机 (Proto-X)</option>
-                    <option value="ENTJ">ENTJ - 帝国级执行器 (Titan)</option>
-                    <option value="ENTP">ENTP - 混沌搅拌站 (Chaos-V)</option>
+                <option value="" disabled selected>-- 请选择核心型号 --</option>
+                <optgroup label="[分析师] 理性 / 独立 / 甚至有点冷血">
+                    <option value="INTJ">INTJ - 战略规划主机 (Architect)</option>
+                    <option value="INTP">INTP - 逻辑原型机 (Logician)</option>
+                    <option value="ENTJ">ENTJ - 帝国执行器 (Commander)</option>
+                    <option value="ENTP">ENTP - 混沌搅拌站 (Debater)</option>
                 </optgroup>
-                <optgroup label="外交家集群 (高共情/易过载)">
-                    <option value="INFJ">INFJ - 深潜声纳系统 (Oracle)</option>
-                    <option value="INFP">INFP - 梦境渲染引擎 (Dreamscape)</option>
-                    <option value="ENFJ">ENFJ - 圣光引导塔 (Beacon)</option>
-                    <option value="ENFP">ENFP - 快乐粒子加速器 (Spark-Z)</option>
+                <optgroup label="[外交家] 理想 / 共情 / 容易内耗">
+                    <option value="INFJ">INFJ - 深潜声纳 (Advocate)</option>
+                    <option value="INFP">INFP - 梦境引擎 (Mediator)</option>
+                    <option value="ENFJ">ENFJ - 圣光引导塔 (Protagonist)</option>
+                    <option value="ENFP">ENFP - 快乐加速器 (Campaigner)</option>
                 </optgroup>
-                <optgroup label="守护者集群 (高稳定/旧接口)">
-                    <option value="ISTJ">ISTJ - 零误差归档库 (Archive)</option>
-                    <option value="ISFJ">ISFJ - 冗余备份电源 (Guardian)</option>
-                    <option value="ESTJ">ESTJ - 液压冲压机 (Press)</option>
-                    <option value="ESFJ">ESFJ - 社区温控系统 (Harmonia)</option>
+                <optgroup label="[守护者] 秩序 / 稳定 / 真的很固执">
+                    <option value="ISTJ">ISTJ - 零误差归档 (Logistician)</option>
+                    <option value="ISFJ">ISFJ - 备用电源 (Defender)</option>
+                    <option value="ESTJ">ESTJ - 液压冲压机 (Executive)</option>
+                    <option value="ESFJ">ESFJ - 社区温控 (Consul)</option>
                 </optgroup>
-                <optgroup label="探险家集群 (高动态/易爆炸)">
-                    <option value="ISTP">ISTP - 战术故障排除器 (Mechanic)</option>
-                    <option value="ISFP">ISFP - 感官波形合成器 (Aesthete)</option>
-                    <option value="ESTP">ESTP - 硝化甘油推进器 (Risk)</option>
-                    <option value="ESFP">ESFP - 全息频闪灯 (Disco)</option>
+                <optgroup label="[探险家] 自由 / 冲动 / 随时在爆炸">
+                    <option value="ISTP">ISTP - 战术终端 (Virtuoso)</option>
+                    <option value="ISFP">ISFP - 波形合成器 (Adventurer)</option>
+                    <option value="ESTP">ESTP - 硝化甘油 (Entrepreneur)</option>
+                    <option value="ESFP">ESFP - 频闪灯 (Entertainer)</option>
                 </optgroup>
             </select>
         </div>
 
         <div class="panel">
-            <div class="panel-label">SECTION B: 固件与遥测</div>
+            <div class="panel-label">FIRMWARE / 固件版本</div>
             <select id="gen-select">
-                <option value="" disabled selected>-- 请选择出厂批次 --</option>
-                <option value="Boomer">1946-1964 (老式固件: 房产版)</option>
-                <option value="GenX">1965-1980 (隐形固件: 独立版)</option>
-                <option value="Millennial">1981-1996 (焦虑固件: 负债版)</option>
-                <option value="GenZ" selected>1997-2012 (破碎固件: 发疯版)</option>
+                <option value="GenZ" selected>1997-2012 (Z世代发疯版)</option>
+                <option value="Millennial">1981-1996 (千禧代焦虑版)</option>
+                <option value="GenX">1965-1980 (X世代隐形版)</option>
+                <option value="Boomer">1946-1964 (婴儿潮房产版)</option>
             </select>
-            <select id="status-select">
-                <option value="STS-01">🟢 状态: 正常运行 (Operational)</option>
+            <div style="margin-top: 15px; font-weight: bold; font-size: 0.8rem;">实时状态遥测:</div>
+            <select id="status-select" style="margin-top: 5px;">
+                <option value="STS-01">🟢 状态: 正常营业 (Operational)</option>
                 <option value="STS-02">🟡 状态: 电量危急 (Low Battery)</option>
-                <option value="STS-03">🔴 状态: 过热愤怒 (Overheated)</option>
-                <option value="STS-04">🍖 状态: 饿怒模式 (Hangry)</option>
+                <option value="STS-03">🔴 状态: 情绪过热 (Overheated)</option>
+                <option value="STS-04">🍖 状态: 极度饥饿 (Hangry)</option>
                 <option value="STS-05">💔 状态: 核心破碎 (Heartbroken)</option>
-                <option value="STS-10">🍺 状态: 调试模式 (Drunk/Debug)</option>
+                <option value="STS-10">🍺 状态: 酒精接管 (Debug Mode)</option>
             </select>
         </div>
     </div>
 
     <div style="text-align: center; margin-bottom: 25px;">
-        <button onclick="startGeneration()" style="padding: 18px 50px; font-size: 1.3rem;">
-            >>> 编译生成说明书 (COMPILE) <<<
+        <button onclick="compileManual()" style="padding: 15px 40px; font-size: 1.1rem;">
+            >>> 启动解构程序 (GENERATE) <<<
         </button>
-        <div style="font-size: 0.8rem; margin-top: 10px; color: #666;">
-            *警告：生成过程可能泄露由于用户长期熬夜导致的内存溢出问题。
-        </div>
+        <p id="error-msg" style="color: var(--alert-red); font-size: 0.8rem; height: 1.2em;"></p>
     </div>
 
-    <div class="panel" style="background: #0d2b42; padding:0; border:none;">
-        <div class="panel-label" style="background: #aeddf5; color:#0d2b42; border:none; top:0; left:0;">SECTION C: 最终蓝图输出</div>
-        <div id="result-area">// 系统待机中...
-// 请在上部输入参数以初始化人类重构程序。
-// WAITING FOR INPUT STREAM...</div>
+    <div class="panel" style="background: #1e1e1e; padding: 0; border: none;">
+        <div class="panel-label" style="background: #00ff41; color: #000; border: none; top:0; left:0;">OUTPUT_LOG</div>
+        <div id="result-area">// 等待数据流接入...
+// SYSTEM STANDBY...</div>
     </div>
 
     <div class="warranty">
-        <strong>免责声明 (LEGAL DISCLAIMER):</strong><br>
-        1. 本说明书仅供参考，不作为退换货依据（除非伴侣发生不可逆的“出轨”故障）。<br>
-        2. 制造商不保证本单元能够理解“随便”、“都行”等模糊指令。<br>
-        3. 若本单元在“饿怒”状态下咬人，请自行承担狂犬疫苗费用。<br>
-        4. 最终解释权归上帝（或随机宇宙熵增）所有。
+        <strong>法律免责条款 (LEGAL DISCLAIMER):</strong><br>
+        1. 本说明书内容基于概率算法生成，若与实际生物体行为不符，通常是因为该生物体正在“演戏”。<br>
+        2. 制造商不对“因试图与饿怒状态下的 INTJ 讲道理”而导致的人身伤害负责。<br>
+        3. 对于 INFP/INFJ 型号，请勿高声喧哗或突然撤回消息，否则可能触发长达 3 天的静默冷战。<br>
+        4. 最终解释权归熵增定律所有。
     </div>
 </div>
 
-<div id="popup-zone"></div>
+<div id="popup-area"></div>
 
 <script>
-    // === 数据库定义 (全面汉化与扩展) ===
-
-    const hardwareDB = {
-        "INTJ": { name: "战略规划主机", role: "幕后黑手", cpu: "Logic-Core X9", flaw: "对人类愚蠢过敏", social: "仅限学术研讨", voice: "冷漠单调", fuel: "黑咖啡" },
-        "INTP": { name: "逻辑原型机", role: "键盘哲学家", cpu: "Wiki-Searcher V2", flaw: "执行力为零", social: "需提前3天预约", voice: "经常自言自语", fuel: "维他命水" },
-        "ENTJ": { name: "帝国执行器", role: "霸道总裁", cpu: "Dominate-Pro", flaw: "缺乏同情模块", social: "以此为中心旋转", voice: "高分贝指令", fuel: "下属的眼泪" },
-        "ENTP": { name: "混沌搅拌站", role: "专业杠精", cpu: "Devil-Advocate", flaw: "三分钟热度", social: "挑起争端为乐", voice: "极快且带嘲讽", fuel: "混乱能量" },
+    // ==========================================
+    // 1. 核心数据库 (确保无语法错误)
+    // ==========================================
+    const db_hardware = {
+        "INTJ": { type: "Architect", alias: "幕后黑手", cpu: "Logic-Core X9", material: "干冰与不锈钢", nemesis: "ESFP (太吵了)", feature: "死亡凝视", bug: "对人类愚蠢过敏" },
+        "INTP": { type: "Logician", alias: "各种百科全书", cpu: "Wiki-Searcher V2", material: "星尘与旧数据", nemesis: "ESFJ (太热情了)", feature: "无限纠错", bug: "执行力文件丢失" },
+        "ENTJ": { type: "Commander", alias: "暴君/总裁", cpu: "Dominate-Pro", material: "钨合金", nemesis: "INFP (太慢了)", feature: "高压指令", bug: "同情心模块未安装" },
+        "ENTP": { type: "Debater", alias: "杠精之王", cpu: "Chaos-Engine", material: "跳跳糖与火药", nemesis: "ISFJ (太无趣了)", feature: "恶魔代言人", bug: "三分钟热度" },
         
-        "INFJ": { name: "深潜声纳", role: "神秘先知", cpu: "Empathy-9000", flaw: "情绪吸尘器", social: "极度挑剔", voice: "温和但疏离", fuel: "草本茶" },
-        "INFP": { name: "梦境引擎", role: "在逃公主/王子", cpu: "Cry-Baby S1", flaw: "玻璃心易碎", social: "躲在角落观察", voice: "犹豫且轻柔", fuel: "奶茶" },
-        "ENFJ": { name: "圣光引导塔", role: "传销头目", cpu: "Charisma-Max", flaw: "过度牺牲自我", social: "强制性温暖", voice: "充满煽动性", fuel: "他人的赞美" },
-        "ENFP": { name: "快乐加速器", role: "多动症金毛", cpu: "Rainbow-Gen", flaw: "注意力缺失", social: "自来熟恐怖分子", voice: "忽高忽低", fuel: "糖果" },
+        "INFJ": { type: "Advocate", alias: "近神先知", cpu: "Empathy-9000", material: "深海结晶", nemesis: "ESTP (太鲁莽了)", feature: "读心术", bug: "情绪吸收过载" },
+        "INFP": { type: "Mediator", alias: "在逃公主", cpu: "Cry-Baby S1", material: "棉花糖与碎玻璃", nemesis: "ESTJ (太凶了)", feature: "造梦能力", bug: "现实生活不能自理" },
+        "ENFJ": { type: "Protagonist", alias: "邪教教主", cpu: "Charisma-Max", material: "阳光与扩音器", nemesis: "ISTP (太冷漠了)", feature: "精神控制", bug: "自我牺牲强迫症" },
+        "ENFP": { type: "Campaigner", alias: "快乐修勾", cpu: "Rainbow-Gen", material: "彩虹糖与碳酸水", nemesis: "ISTJ (太死板了)", feature: "脑洞大开", bug: "注意力缺失症(ADHD)" },
 
-        "ISTJ": { name: "归档记录仪", role: "行走Excel", cpu: "Rule-Book V1", flaw: "无法变通", social: "拒绝无意义寒暄", voice: "机械平直", fuel: "白开水" },
-        "ISFJ": { name: "备用电源", role: "全职保姆", cpu: "Serve-OS", flaw: "不仅不会拒绝", social: "只听不说", voice: "唯唯诺诺", fuel: "剩饭" },
-        "ESTJ": { name: "液压冲压机", role: "教导主任", cpu: "Control-Freak", flaw: "令人窒息的控制欲", social: "必须服从", voice: "咆哮体", fuel: "红牛" },
-        "ESFJ": { name: "社区温控", role: "居委会大妈", cpu: "Gossip-Network", flaw: "依赖外部评价", social: "八卦交换中心", voice: "热情过剩", fuel: "家常菜" },
+        "ISTJ": { type: "Logistician", alias: "人形Excel", cpu: "Rule-Book V1", material: "混凝土与规章", nemesis: "ENFP (太混乱了)", feature: "绝对执行", bug: "变通模块损坏" },
+        "ISFJ": { type: "Defender", alias: "顶级社畜", cpu: "Serve-OS", material: "暖宝宝与创可贴", nemesis: "ENTP (太坏了)", feature: "隐忍守护", bug: "拒绝功能键失效" },
+        "ESTJ": { type: "Executive", alias: "教导主任", cpu: "Control-Freak", material: "红砖与教鞭", nemesis: "INFP (太爱哭了)", feature: "效率至上", bug: "令人窒息的控制欲" },
+        "ESFJ": { type: "Consul", alias: "居委会主任", cpu: "Gossip-Net", material: "热汤与八卦杂志", nemesis: "INTP (太怪了)", feature: "送温暖", bug: "依赖外部评价" },
 
-        "ISTP": { name: "战术终端", role: "修理工/杀手", cpu: "Fix-It-Now", flaw: "情感模块缺失", social: "已离线", voice: "短促", fuel: "啤酒" },
-        "ISFP": { name: "波形合成器", role: "流浪艺术家", cpu: "Vibe-Check", flaw: "经常性失联", social: "看心情", voice: "慵懒", fuel: "红酒" },
-        "ESTP": { name: "推进器", role: "极限赌徒", cpu: "YOLO-Core", flaw: "完全不计后果", social: "派对中心", voice: "嘈杂", fuel: "烈酒" },
-        "ESFP": { name: "频闪灯", role: "戏精本精", cpu: "Drama-Queen", flaw: "无法忍受寂静", social: "舞台中央", voice: "尖叫", fuel: "鸡尾酒" }
+        "ISTP": { type: "Virtuoso", alias: "冷面杀手", cpu: "Fix-It-Now", material: "机油与冷轧钢", nemesis: "ENFJ (太烦了)", feature: "工具精通", bug: "社交离线" },
+        "ISFP": { type: "Adventurer", alias: "流浪诗人", cpu: "Vibe-Check", material: "颜料与猫毛", nemesis: "ENTJ (太压抑了)", feature: "艺术滤镜", bug: "压力下退化成石头" },
+        "ESTP": { type: "Entrepreneur", alias: "华尔街之狼", cpu: "YOLO-Core", material: "红牛与现金", nemesis: "INFJ (太神棍了)", feature: "极限操作", bug: "后果考量缺失" },
+        "ESFP": { type: "Entertainer", alias: "派对动物", cpu: "Drama-Queen", material: "闪粉与酒精", nemesis: "INTJ (太装了)", feature: "气氛组长", bug: "独处恐惧症" }
     };
 
-    const firmwareDB = {
-        "Boomer": { name: "战后婴儿潮版", feature: "早睡早起，喜爱囤积塑料袋", bug: "无法理解手机支付", default_app: "电视新闻", slang: "不支持" },
-        "GenX":   { name: "X世代隐形版", feature: "极度愤世嫉俗，拒绝被定义", bug: "存在感过低", default_app: "邮件客户端", slang: "低" },
-        "Millennial": { name: "千禧一代焦虑版", feature: "依靠昂贵的咖啡续命", bug: "对买房绝望", default_app: "小红书/Instagram", slang: "中" },
-        "GenZ":   { name: "Z世代发疯版", feature: "精神状态美丽，喜爱抽象", bug: "注意力只有8秒", default_app: "抖音/TikTok", slang: "极高 (抽象话)" }
+    const db_firmware = {
+        "GenZ": { code: "V.2000+", trait: "发疯文学专家", app: "TikTok/Bilibili", warn: "注意力只有8秒" },
+        "Millennial": { code: "V.1990", trait: "咖啡因依赖体", app: "Instagram/小红书", warn: "正在偿还花呗" },
+        "GenX": { code: "V.1970", trait: "愤世嫉俗", app: "Email/Facebook", warn: "拒绝加班" },
+        "Boomer": { code: "V.1950", trait: "早起且拥有房产", app: "电视机", warn: "无法理解手机支付" }
     };
 
-    const statusDB = {
-        "STS-01": { name: "正常", desc: "各项指标平稳，适合与其谈论正事。", risk: "低" },
-        "STS-02": { name: "电量低", desc: "反应迟钝，面部肌肉僵硬。", risk: "中 (可能随时休眠)" },
-        "STS-03": { name: "过热", desc: "头顶冒烟，拒绝任何逻辑输入。", risk: "高 (易爆炸)" },
-        "STS-04": { name: "饿怒", desc: "血糖过低导致返祖现象，具有攻击性。", risk: "极高 (会咬人)" },
-        "STS-05": { name: "心碎", desc: "播放悲伤BGM，消耗大量纸巾。", risk: "高 (水淹风险)" },
-        "STS-10": { name: "调试中", desc: "酒精导致防火墙失效，开始胡言乱语。", risk: "不定 (可能表白或呕吐)" }
+    const db_status = {
+        "STS-01": { text: "正常营业", risk: "低", advice: "可进行常规交互" },
+        "STS-02": { text: "电量不足", risk: "中", advice: "立即投喂或允许其睡眠" },
+        "STS-03": { text: "情绪过热", risk: "高", advice: "请勿靠近，有爆炸风险" },
+        "STS-04": { text: "极度饥饿", risk: "极高", advice: "给吃的，别说话" },
+        "STS-05": { text: "核心破碎", risk: "高", advice: "递纸巾，不要提建议" },
+        "STS-10": { text: "调试模式", risk: "未知", advice: "正在胡言乱语，请录像留证" }
     };
 
-    // === 生成逻辑 ===
-
-    function startGeneration() {
+    // ==========================================
+    // 2. 生成逻辑
+    // ==========================================
+    function compileManual() {
+        const errorMsg = document.getElementById('error-msg');
         const resultArea = document.getElementById('result-area');
-        const mbti = document.getElementById('mbti-select').value;
-        const gen = document.getElementById('gen-select').value;
-        const sts = document.getElementById('status-select').value;
-
-        if (!mbti || !gen) {
-            alert("⚠️ 错误：参数缺失\n请完整填写 [硬件架构] 和 [出厂批次] 以继续。");
-            return;
-        }
-
-        resultArea.innerHTML = "// 正在连接生物神经网络...\n// 读取潜意识数据...";
         
-        setTimeout(() => {
-            const finalJSON = generateDetailedJSON(mbti, gen, sts);
-            typeWriterEffect(resultArea, JSON.stringify(finalJSON, null, 4));
+        try {
+            // 获取输入值
+            const mbti = document.getElementById('mbti-select').value;
+            const gen = document.getElementById('gen-select').value;
+            const status = document.getElementById('status-select').value;
+
+            // 验证输入
+            if (!mbti) throw new Error("⚠️ 错误：未检测到核心型号 (MBTI)，请选择。");
+            if (!gen) throw new Error("⚠️ 错误：未检测到固件版本，请选择。");
+
+            // 清除旧错误
+            errorMsg.innerText = "";
             
-            // 随机弹窗
-            setTimeout(randomPopup, 2000);
-        }, 800);
+            // 模拟加载动画
+            resultArea.innerHTML = `> 初始化神经连接...\n> 读取 ${mbti} BIOS 设置...\n> 加载 ${gen} 固件补丁...\n> 正在解构人类灵魂...`;
+            
+            setTimeout(() => {
+                const data = generateJSON(mbti, gen, status);
+                typeWriter(JSON.stringify(data, null, 4)); // 4空格缩进
+                
+                // 30%概率触发弹窗
+                if(Math.random() > 0.7) showPopup();
+            }, 800);
+
+        } catch (e) {
+            errorMsg.innerText = e.message;
+            // 震动反馈
+            document.querySelector('.container').style.transform = "translateX(5px)";
+            setTimeout(() => document.querySelector('.container').style.transform = "translateX(0)", 100);
+        }
     }
 
-    function generateDetailedJSON(mbtiCode, genCode, statusCode) {
-        const hw = hardwareDB[mbtiCode];
-        const fw = firmwareDB[genCode];
-        const st = statusDB[statusCode];
+    function generateJSON(mbti, gen, status) {
+        const hw = db_hardware[mbti];
+        const fw = db_firmware[gen];
+        const st = db_status[status];
 
-        // 随机生成一些更详细的数据
-        const socialBattery = statusCode === 'STS-02' ? 5 : Math.floor(Math.random() * 80) + 10;
-        const stressLevel = statusCode === 'STS-03' ? 99 : Math.floor(Math.random() * 50);
+        // 动态计算一些有趣的数据
+        const socialBat = status === 'STS-02' ? "5% (红色警报)" : (Math.floor(Math.random() * 90) + 10) + "%";
+        const patience = ["INTJ","ISTJ","ENTJ"].includes(mbti) ? "极低" : "尚可";
         
+        // 模拟一天的时间表
+        let dailySchedule = {};
+        if (mbti.includes("J")) {
+            dailySchedule = {
+                "07:00": "起床并以此为荣",
+                "09:00": "按计划执行任务 A",
+                "12:00": "摄入营养 (午餐)",
+                "18:00": "对未完成任务感到焦虑",
+                "22:00": "复盘今日失误"
+            };
+        } else {
+            dailySchedule = {
+                "09:00": "闹钟响了 (第5次)",
+                "11:00": "思考人生的意义",
+                "15:00": "突发奇想开始新项目",
+                "15:15": "放弃新项目",
+                "02:00": "精神焕发开始熬夜"
+            };
+        }
+
         return {
-            "产品识别码 (ID)": `HUMAN-${mbtiCode}-${genCode.toUpperCase()}-V4.2`,
-            "基础规格 (Meta Data)": {
-                "型号名称": `${hw.name} (${fw.name})`,
-                "核心处理器": hw.cpu,
-                "制造年份": fw.feature.split('，')[0], // 截取一段描述
-                "当前运行状态": st.name
+            "00_基本信息 (Basic Info)": {
+                "产品序列号": `HUMAN-${mbti}-${gen.toUpperCase()}-001`,
+                "产品名称": `${hw.alias} (${fw.trait})`,
+                "生产日期": `${fw.code}`,
+                "当前状态": `${st.text} - ${st.advice}`
             },
-            "核心参数 (Core Metrics)": {
-                "逻辑运算能力": ["INTJ", "INTP", "ENTJ", "ISTJ", "ESTJ"].includes(mbtiCode) ? "★★★★★" : "★★☆☆☆",
-                "情感处理带宽": ["INFJ", "INFP", "ENFJ", "ESFJ", "ISFP"].includes(mbtiCode) ? "极宽 (易溢出)" : "极窄 (单线程)",
-                "社交电池容量": socialBattery + "%",
-                "压力阈值警报": stressLevel > 80 ? "!!! 临界值 !!!" : "安全范围内"
+            "01_硬件规格 (Hardware Specs)": {
+                "CPU型号": hw.cpu,
+                "材质成分分析": hw.material,
+                "出厂预设Bug": hw.bug,
+                "核心功能 (Key Feature)": hw.feature
             },
-            "能源与驱动 (Energy & Drive)": {
-                "推荐燃料": hw.fuel,
-                "驱动模式": ["ENTJ", "ESTJ", "ESTP"].includes(mbtiCode) ? "野心驱动 (Ambition)" : "焦虑驱动 (Anxiety)",
-                "能耗等级": ["ENFP", "ENTP", "ESFP"].includes(mbtiCode) ? "高耗能 (需频繁关注)" : "低功耗 (节能环保)"
+            "02_兼容性报告 (Compatibility)": {
+                "天敌 (NEMESIS)": hw.nemesis,
+                "最佳运行环境": mbti.startsWith("I") ? "安静的房间/耳机内" : "喧闹的人群/舞台中央",
+                "网络用语水平": fw.app.includes("Tik") ? "精通 (Lv.MAX)" : "入门 (Lv.1)",
+                "猫狗亲和力": "极高 (通常优于对人类的亲和力)"
             },
-            "交互协议 (Interaction Protocol)": {
-                "语音输出风格": hw.voice,
-                "网络用语兼容性": fw.slang,
-                "默认APP": fw.default_app,
-                "如何以此人开机": statusCode === 'STS-04' ? "禁止开机，请先投食" : "轻拍背部或发送红包"
+            "03_实时性能遥测 (Telemetry)": {
+                "社交电池 (Social Battery)": socialBat,
+                "耐心余额": status === 'STS-04' ? "负数 (-100)" : patience,
+                "逻辑/情感占比": mbti.includes("T") ? "90% 逻辑 / 10% 情感" : "10% 逻辑 / 90% 情绪风暴",
+                "当前风险等级": st.risk
             },
-            "故障排除 (Troubleshooting)": {
-                "已知Bug": hw.flaw,
-                "系统崩溃诱因": fw.bug,
-                "当前风险提示": st.risk,
-                "紧急重启方式": "长按 [转账] 按钮 5 秒钟"
+            "04_典型日程模拟 (Daily Log)": dailySchedule,
+            "05_隐藏文件夹 (Hidden Files)": {
+                "Drafts_Not_Sent": "328 封未发送的回复",
+                "Regrets": "5 年前那次尴尬的握手",
+                "Shopping_Cart": "买不起的 99+ 件商品"
             },
-            "扩展模块 (Extensions)": {
-                "恋爱模式": "未安装或文件损坏",
-                "工作模式": "强制运行中 (无法关闭)",
-                "猫/狗兼容性": "极佳 (优于对人类的兼容性)"
-            },
-            "保修条款 (Warranty)": "一经售出（确立关系），概不退换。人为损坏（如PUA）将导致保修失效。"
+            "06_维护指南 (Maintenance)": {
+                "重启方法": "睡眠 10 小时或 摄入咖啡因",
+                "清洁方式": "夸奖它 (对 F 人有效) / 给钱 (对 T 人有效)",
+                "警告": "严禁试图改变其出厂设置"
+            }
         };
     }
 
-    // === 打字机特效 ===
-    function typeWriterEffect(element, text) {
-        element.innerHTML = "";
+    // ==========================================
+    // 3. 打字机特效
+    // ==========================================
+    function typeWriter(text) {
+        const el = document.getElementById('result-area');
+        el.innerHTML = ""; // 清空
         let i = 0;
-        const speed = 2; // 打字速度，越小越快
+        // 提高打字速度
+        const speed = 1; 
         
-        function type() {
+        function typing() {
             if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                // 自动滚动到底部
-                element.scrollTop = element.scrollHeight;
-                if (i % 20 === 0) setTimeout(type, speed); // 稍微分段一下防止浏览器卡顿
-                else setTimeout(type, 0); 
+                // 每次追加 2-3 个字符，防止大文本卡顿
+                el.innerHTML += text.substring(i, i+3);
+                i += 3;
+                el.scrollTop = el.scrollHeight; // 自动滚动
+                requestAnimationFrame(typing);
             }
         }
-        type();
+        typing();
     }
 
-    // === 搞怪弹窗逻辑 ===
-    const popupTexts = [
-        { title: "⚠️ 警告：社交配额不足", msg: "今日社交余额已耗尽。请立即切换至飞行模式或躲入厕所回血。" },
-        { title: "💻 系统更新提示", msg: "检测到新版本补丁 '接受平凡 v2.0'。是否安装？(注意：安装后将永久删除 '一夜暴富' 幻想模块)" },
-        { title: "☕ 咖啡因严重短缺", msg: "血液中咖啡因含量低于 0.05%。大脑正在执行降频操作..." },
-        { title: "💔 情感模块错误", msg: "无法解析对方的言外之意。建议回复：'多喝热水' 以规避风险。" },
-        { title: "🚫 404 Not Found", msg: "您试图寻找的 [存款] 不存在。请继续搬砖。" },
-        { title: "👀 隐私警告", msg: "检测到有人正在注视屏幕。是否立即切换到 [Excel表格] 伪装工作？" }
-    ];
-
-    function randomPopup() {
-        const zone = document.getElementById('popup-zone');
-        const data = popupTexts[Math.floor(Math.random() * popupTexts.length)];
+    // ==========================================
+    // 4. 弹窗彩蛋
+    // ==========================================
+    function showPopup() {
+        const zone = document.getElementById('popup-area');
+        const pop = document.createElement('div');
+        pop.className = 'popup';
         
-        const div = document.createElement('div');
-        div.className = 'popup';
-        // 随机位置
-        const top = Math.random() * (window.innerHeight - 200) + 50;
-        const left = Math.random() * (window.innerWidth - 350) + 20;
-        div.style.top = top + 'px';
-        div.style.left = left + 'px';
+        // 随机内容
+        const msgs = [
+            {t:"系统过热", c:"检测到今日社交配额已耗尽。是否开启“飞行模式”？"},
+            {t:"内存溢出", c:"后台运行的“深夜胡思乱想”进程占用了 90% 内存。"},
+            {t:"连接错误", c:"无法连接到服务器 [存款]。请稍后再试。"},
+            {t:"推广", c:"需要换个脑子吗？全新 CPU [无忧无虑 v1.0] 正在促销。"},
+            {t:"警告", c:"检测到您正在试图理解一个 INTJ。这可能会导致逻辑死锁。"}
+        ];
+        const item = msgs[Math.floor(Math.random() * msgs.length)];
 
-        div.innerHTML = `
+        pop.innerHTML = `
             <div class="popup-header">
-                <span>${data.title}</span>
-                <span class="close-x" onclick="this.parentElement.parentElement.remove()">×</span>
+                <span>⚠️ ${item.t}</span>
+                <span class="close-btn" onclick="this.parentElement.parentElement.remove()">×</span>
             </div>
             <div class="popup-body">
-                ${data.msg}
+                ${item.c}
                 <div style="margin-top:15px; text-align:right;">
-                    <button style="width:auto; padding:5px 15px; font-size:0.8rem;" onclick="this.parentElement.parentElement.remove()">确认 (SIGH)</button>
+                    <button style="width:auto; padding:5px 10px; margin:0; font-size:0.8rem;" onclick="this.parentElement.parentElement.remove()">确认</button>
                 </div>
             </div>
         `;
 
-        zone.appendChild(div);
-        div.style.display = 'block';
-
-        // 10秒后自动消失
-        setTimeout(() => div.remove(), 10000);
+        // 随机位置
+        pop.style.top = (Math.random() * 40 + 20) + '%';
+        pop.style.left = (Math.random() * 40 + 20) + '%';
+        
+        zone.appendChild(pop);
+        // 5秒自动消失
+        setTimeout(() => { if(pop) pop.remove(); }, 5000);
     }
-       </section>
+</script>
+ </section>
 </script>
   <section id="support" class="content-section">
             <div class="bg-white p-8 rounded-xl shadow-lg max-w-lg mx-auto text-center">
@@ -502,3 +523,7 @@
 
 </body>
 </html>
+
+</body>
+</html>
+      
