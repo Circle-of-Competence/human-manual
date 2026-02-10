@@ -310,6 +310,89 @@
             </select>
         </div>
     </div>
+    <style>
+    /* 容器样式 */
+    .cross-promo-box {
+        margin: 30px auto;
+        padding: 15px;
+        max-width: 800px; /* 控制最大宽度 */
+        background: rgba(255, 255, 255, 0.5); /* 半透明背景，适应各种网页底色 */
+        border-radius: 12px;
+        text-align: center;
+        border: 1px dashed #ccc;
+    }
+    
+    .promo-title {
+        font-size: 1.1em;
+        color: #555;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    /* 网格布局 */
+    .promo-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    /* 按钮基础样式 */
+    .promo-link {
+        text-decoration: none;
+        color: white;
+        padding: 12px 15px;
+        border-radius: 8px;
+        font-size: 0.95em;
+        font-weight: bold;
+        flex: 1 0 140px; /* 弹性宽度：最小140px，自动填满 */
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 鼠标悬停特效 */
+    .promo-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        opacity: 0.95;
+    }
+
+    /* 各个按钮的颜色配置 */
+    .color-1 { background: linear-gradient(135deg, #FF6B6B, #EE5253); } /* 活力红 */
+    .color-2 { background: linear-gradient(135deg, #4ECDC4, #22A6B3); } /* 青碧色 */
+    .color-3 { background: linear-gradient(135deg, #A29BFE, #6C5CE7); } /* 梦幻紫 */
+    .color-4 { background: linear-gradient(135deg, #FECA57, #FF9F43); } /* 温暖橙 */
+    .color-5 { background: linear-gradient(135deg, #ff9ff3, #f368e0); } /* 糖果粉 */
+    .color-6 { background: linear-gradient(135deg, #54a0ff, #2e86de); } /* 科技蓝 */
+
+</style>
+
+<div class="cross-promo-box">
+    <div class="promo-title">🚀 探索更多有趣的人类观察工具</div>
+    <div class="promo-grid">
+        <a href="https://circle-of-competence.github.io/In-depth-Parenting-Assessment/" class="promo-link color-1">
+            👶 深度养育攻略
+        </a>
+        <a href="https://circle-of-competence.github.io/father-and-mother-OK-/" class="promo-link color-2">
+            👨‍👩‍👧 父母合格检测
+        </a>
+        <a href="https://circle-of-competence.github.io/human-manual/" class="promo-link color-3">
+            📖 人类使用说明书
+        </a>
+        <a href="https://circle-of-competence.github.io/Stupid-tax-test-/" class="promo-link color-4">
+            💸 智商税检测
+        </a>
+        <a href="https://circle-of-competence.github.io/Political-Typology-Quiz/" class="promo-link color-5">
+            🌐 互联网成分检测
+        </a>
+        <a href="https://circle-of-competence.github.io/" class="promo-link color-6">
+            📈 巴菲特能力圈
+        </a>
+    </div>
+</div>
 
     <div style="text-align: center; margin-bottom: 25px;">
         <button onclick="compileManual()" style="padding: 16px 50px; font-size: 1.2rem;">
